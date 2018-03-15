@@ -26,6 +26,12 @@ function kafka_topic_create {
   $KAFKA_HOME/bin/kafka-topics.sh --create --if-not-exists --zookeeper ${ZOOKEEPER_HOST}:${ZOOKEEPER_PORT} --partitions 1 --replication-factor 1 --topic ${TOPIC}
 }
 
+## Delete a topic in a user terminal
+function kafka_topic_delete {
+  $KAFKA_HOME/bin/kafka-topics.sh --delete --zookeeper ${ZOOKEEPER_HOST}:${ZOOKEEPER_PORT} --topic ${TOPIC}
+  $KAFKA_HOME/bin/kafka-topics.sh --zookeeper ${ZOOKEEPER_HOST}:${ZOOKEEPER_PORT} --list
+}
+
 ## Run a test producer in a separate terminal
 function kafka_console_producer {
   $KAFKA_HOME/bin/kafka-console-producer.sh --broker-list ${KAFKA_HOST}:${KAFKA_PORT} --topic ${TOPIC}
